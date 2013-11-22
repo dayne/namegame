@@ -47,10 +47,14 @@ while(not_done)
   next if count == arena.count 
   count = arena.count
   heroes = arena.heroes
+  kills = []
   me = false
   heroes.each { |h| me = h if h[:name] == hero }
   if me
-    puts "#{hero} is still alive! Kills: #{me[:kills].collect{ |k| k[:name]}.join(", ")}".green
+    if kills != me[:kills] 
+      puts "#{hero} is still alive! Kills: #{me[:kills].collect{ |k| k[:name]}.join(", ")}".green
+      kills = me[:kills]
+    end
   else
     puts "#{hero} died..".red
     exit 
